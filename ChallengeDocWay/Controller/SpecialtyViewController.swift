@@ -1,18 +1,17 @@
 //
-//  SymptomViewController.swift
+//  EspecialityViewController.swift
 //  ChallengeDocWay
 //
-//  Created by Gustavo Quenca on 15/03/19.
+//  Created by Gustavo Quenca on 16/03/19.
 //  Copyright © 2019 Quenca. All rights reserved.
 //
 
 import UIKit
 
-class SymptomViewController: UIViewController {
+class SpecialtyViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
-    var symptoms = [Symptom]()
+    
     
     private let dataSource = DataSource()
     let spinner = UIActivityIndicatorView(style: .whiteLarge)
@@ -20,10 +19,10 @@ class SymptomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "SymptomCellTableViewCell", bundle: .main), forCellReuseIdentifier: "SymptomCellTableViewCell")
+        tableView.register(UINib(nibName: "SpecialtyTableViewCell", bundle: .main), forCellReuseIdentifier: "SpecialtyTableViewCell")
         
         // Get the request
-        dataSource.getSymptomsRequest(completion: { success in
+        dataSource.getSpecialityRequest(completion: { success in
             self.spinner.stopAnimating()
             self.tableView.reloadData()
         })
@@ -40,10 +39,10 @@ class SymptomViewController: UIViewController {
     }
 }
 
-extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
+extension SpecialtyViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch dataSource.symptomState {
+        switch dataSource.specialtyState {
         case .loading:
             return 1
             
@@ -57,12 +56,12 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch dataSource.symptomState {
+        switch dataSource.specialtyState {
         case .loading:
             createSpinnerView()
             spinner.startAnimating()
             return UITableViewCell()
-        
+            
         case .noResults:
             self.spinner.stopAnimating()
             let alert = UIAlertController(title: "Error", message: "Not Found", preferredStyle: .alert)
@@ -75,11 +74,11 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
             
         case .results(let list):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SymptomCellTableViewCell", for: indexPath) as? SymptomCellTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SpecialtyTableViewCell", for: indexPath) as? SpecialtyTableViewCell else {
                 return UITableViewCell()
             }
-            let symptom = list[indexPath.row]
-            cell.configure(for: symptom)
+            let spelcialty = list[indexPath.row]
+            cell.configure(for: spelcialty)
             
             return cell
         }

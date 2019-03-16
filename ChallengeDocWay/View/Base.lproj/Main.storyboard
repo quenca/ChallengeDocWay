@@ -19,11 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH1-r3-and">
-                                <rect key="frame" x="128" y="187" width="64" height="30"/>
+                                <rect key="frame" x="128" y="140" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sintomas"/>
                                 <connections>
                                     <segue destination="8FL-uS-ZcT" kind="show" id="XWM-Cw-KGl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgh-JT-nfr">
+                                <rect key="frame" x="109" y="178" width="103" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Especialidades"/>
+                                <connections>
+                                    <segue destination="Aiq-Gh-cja" kind="show" identifier="showEspeciality" id="jk6-ML-9P3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -35,6 +43,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="813.75" y="88.732394366197184"/>
+        </scene>
+        <!--Especialidade-->
+        <scene sceneID="1yR-aM-POs">
+            <objects>
+                <viewController title="Especialidade" id="Aiq-Gh-cja" customClass="SpecialtyViewController" customModule="ChallengeDocWay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zAd-2a-ef0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4sm-vw-2Q2">
+                                <rect key="frame" x="0.0" y="111" width="320" height="457"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Aiq-Gh-cja" id="FH7-j6-Weo"/>
+                                    <outlet property="delegate" destination="Aiq-Gh-cja" id="Cxa-ZF-gs8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4sm-vw-2Q2" firstAttribute="leading" secondItem="AkX-Av-09p" secondAttribute="leading" id="0PO-5J-y5p"/>
+                            <constraint firstItem="4sm-vw-2Q2" firstAttribute="trailing" secondItem="AkX-Av-09p" secondAttribute="trailing" id="3ib-fE-hHd"/>
+                            <constraint firstItem="4sm-vw-2Q2" firstAttribute="top" secondItem="AkX-Av-09p" secondAttribute="top" id="IlE-tk-jun"/>
+                            <constraint firstItem="4sm-vw-2Q2" firstAttribute="bottom" secondItem="AkX-Av-09p" secondAttribute="bottom" id="ypc-qU-hf7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AkX-Av-09p"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="4sm-vw-2Q2" id="zA3-5m-k4x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mwt-HX-NEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1638.75" y="565.14084507042253"/>
         </scene>
         <!--Sintomas-->
         <scene sceneID="Yzt-rt-Gpz">
@@ -64,12 +106,11 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="qCY-QX-ENp" id="4Va-s8-DB2"/>
-                        <outlet property="view" destination="qCY-QX-ENp" id="59x-nZ-PKv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rgl-1p-pDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1494.375" y="87.676056338028175"/>
+            <point key="canvasLocation" x="1639" y="-114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XFV-Xm-PyJ">

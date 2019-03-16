@@ -17,6 +17,10 @@
 		CD8B00F8223C7B9A00411B43 /* SymptomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B00F7223C7B9A00411B43 /* SymptomViewController.swift */; };
 		CD8B00FB223C88F300411B43 /* SymptomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B00F9223C88F300411B43 /* SymptomCellTableViewCell.swift */; };
 		CD8B00FC223C88F300411B43 /* SymptomCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD8B00FA223C88F300411B43 /* SymptomCellTableViewCell.xib */; };
+		CDE5B525223D7A16002CF6B1 /* SpecialtyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE5B523223D7A16002CF6B1 /* SpecialtyTableViewCell.swift */; };
+		CDE5B526223D7A16002CF6B1 /* SpecialtyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE5B524223D7A16002CF6B1 /* SpecialtyTableViewCell.xib */; };
+		CDE8B6B8223D6E0100EFEFC5 /* SpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE8B6B7223D6E0100EFEFC5 /* SpecialtyViewController.swift */; };
+		CDE8B6BA223D6E4000EFEFC5 /* Specialty.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE8B6B9223D6E4000EFEFC5 /* Specialty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		CD8B00F7223C7B9A00411B43 /* SymptomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomViewController.swift; sourceTree = "<group>"; };
 		CD8B00F9223C88F300411B43 /* SymptomCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCellTableViewCell.swift; sourceTree = "<group>"; };
 		CD8B00FA223C88F300411B43 /* SymptomCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SymptomCellTableViewCell.xib; sourceTree = "<group>"; };
+		CDE5B523223D7A16002CF6B1 /* SpecialtyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyTableViewCell.swift; sourceTree = "<group>"; };
+		CDE5B524223D7A16002CF6B1 /* SpecialtyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialtyTableViewCell.xib; sourceTree = "<group>"; };
+		CDE8B6B7223D6E0100EFEFC5 /* SpecialtyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyViewController.swift; sourceTree = "<group>"; };
+		CDE8B6B9223D6E4000EFEFC5 /* Specialty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specialty.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				CD8B00F2223C631E00411B43 /* Symptoms.swift */,
+				CDE8B6B9223D6E4000EFEFC5 /* Specialty.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,6 +98,7 @@
 			children = (
 				CD8B00DF223C559800411B43 /* MenuViewController.swift */,
 				CD8B00F7223C7B9A00411B43 /* SymptomViewController.swift */,
+				CDE8B6B7223D6E0100EFEFC5 /* SpecialtyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,6 +109,8 @@
 				CD8B00E1223C559800411B43 /* Main.storyboard */,
 				CD8B00F9223C88F300411B43 /* SymptomCellTableViewCell.swift */,
 				CD8B00FA223C88F300411B43 /* SymptomCellTableViewCell.xib */,
+				CDE5B523223D7A16002CF6B1 /* SpecialtyTableViewCell.swift */,
+				CDE5B524223D7A16002CF6B1 /* SpecialtyTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,6 +183,7 @@
 			files = (
 				CD8B00E8223C559A00411B43 /* LaunchScreen.storyboard in Resources */,
 				CD8B00FC223C88F300411B43 /* SymptomCellTableViewCell.xib in Resources */,
+				CDE5B526223D7A16002CF6B1 /* SpecialtyTableViewCell.xib in Resources */,
 				CD8B00E5223C559A00411B43 /* Assets.xcassets in Resources */,
 				CD8B00E3223C559800411B43 /* Main.storyboard in Resources */,
 			);
@@ -183,11 +196,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE5B525223D7A16002CF6B1 /* SpecialtyTableViewCell.swift in Sources */,
+				CDE8B6BA223D6E4000EFEFC5 /* Specialty.swift in Sources */,
 				CD8B00F3223C631E00411B43 /* Symptoms.swift in Sources */,
 				CD8B00E0223C559800411B43 /* MenuViewController.swift in Sources */,
 				CD8B00F6223C63CC00411B43 /* DataSource.swift in Sources */,
 				CD8B00F8223C7B9A00411B43 /* SymptomViewController.swift in Sources */,
 				CD8B00DE223C559700411B43 /* AppDelegate.swift in Sources */,
+				CDE8B6B8223D6E0100EFEFC5 /* SpecialtyViewController.swift in Sources */,
 				CD8B00FB223C88F300411B43 /* SymptomCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

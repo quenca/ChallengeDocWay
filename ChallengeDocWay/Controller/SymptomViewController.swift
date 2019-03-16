@@ -15,6 +15,7 @@ class SymptomViewController: UIViewController {
     var symptoms = [Symptom]()
     
     private let dataSource = DataSource()
+    let spinner = UIActivityIndicatorView(style: .whiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,41 +24,61 @@ class SymptomViewController: UIViewController {
         
         // Get the request
         dataSource.getSymptomsRequest(completion: { success in
-            if !success {
-                print("error")
-            }
+            self.spinner.stopAnimating()
             self.tableView.reloadData()
         })
+    }
+    
+    func createSpinnerView() {
+        spinner.color = .black
+        spinner.hidesWhenStopped = true
+        view.addSubview(spinner)
+        
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }
 
 extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if case .results(let list) = dataSource.state {
-            return list.count
-        } else {
+        switch dataSource.state {
+        case .loading:
             return 1
+            
+        case .noResults:
+            return 1
+            
+        case .results(let list):
+            return list.count
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch dataSource.state {
+        case .loading:
+            createSpinnerView()
+            spinner.startAnimating()
+            return UITableViewCell()
         
-        if case .results(let list) = dataSource.state {
+        case .noResults:
+            self.spinner.stopAnimating()
+            let alert = UIAlertController(title: "Error", message: "Not Found", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
+            return UITableViewCell()
+            
+        case .results(let list):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SymptomCellTableViewCell", for: indexPath) as? SymptomCellTableViewCell else {
                 return UITableViewCell()
             }
-            
             let symptom = list[indexPath.row]
             cell.configure(for: symptom)
+            
             return cell
         }
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SymptomCellTableViewCell", for: indexPath) as? SymptomCellTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        return cell
     }
 }

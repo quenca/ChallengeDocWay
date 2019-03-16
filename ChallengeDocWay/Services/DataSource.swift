@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DataSource {
 typealias Completion = (Bool) -> Void
@@ -17,12 +18,11 @@ typealias Completion = (Bool) -> Void
         case results([Symptom])
     }
     
-    private(set) var state: SymptomState = .noResults
+    private(set) var state: SymptomState = .loading
     
     func getSymptomsURL () -> URL {
         let urlString = "https://www.mocky.io/v2/5c8bd7ea360000a8438f82fc"
         let url = URL(string: urlString)
-        print(url!)
         return url!
     }
     
@@ -30,10 +30,8 @@ typealias Completion = (Bool) -> Void
         do {
             let decoder = JSONDecoder()
             let result = try decoder.decode([Symptom].self, from: data)
-            print(result)
             return result
         } catch {
-            print("JSON Error: \(error)")
             return []
         }
     }
@@ -42,6 +40,8 @@ typealias Completion = (Bool) -> Void
         var dataTask: URLSessionDataTask? = nil
         let url = getSymptomsURL()
         let session = URLSession.shared
+        
+        state = .loading
         
         dataTask = session.dataTask(with: url, completionHandler: { data, response, error in
             var success = false

@@ -18,7 +18,7 @@ class SymptomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.register(UINib(nibName: "SymptomCellTableViewCell", bundle: .main), forCellReuseIdentifier: "SymptomCellTableViewCell")
         
         // Get the request
@@ -42,7 +42,6 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("CellForRowAt")
         
         if case .results(let list) = dataSource.state {
             

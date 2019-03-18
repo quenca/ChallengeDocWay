@@ -30,10 +30,32 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     
     private let dataSource = DataSource()
     
+    var isKeyboardAppear = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        hideKeyboardWhenTappedAround()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if !isKeyboardAppear {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+            isKeyboardAppear = true
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if isKeyboardAppear {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y != 0{
+                    self.view.frame.origin.y += keyboardSize.height
+                }
+            }
+            isKeyboardAppear = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,15 +123,3 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// MARK: -Hide keyboard
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-    }
-}

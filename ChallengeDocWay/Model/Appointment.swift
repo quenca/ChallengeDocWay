@@ -9,6 +9,7 @@
 import Foundation
 
 class Appointment: NSObject, Codable {
+    
     let date: Date
     let patient: Patient
     let address: Adress

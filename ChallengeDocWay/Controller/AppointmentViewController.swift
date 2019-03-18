@@ -32,9 +32,13 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Change the buttons name  after choose Symptoms and Specialty
         if selectedSymptoms.isEmpty {
             symptomButton.setTitle("Escolher Sintomas", for: .normal)
         } else {
@@ -44,14 +48,6 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
             specialtyButton.setTitle("\(specialtyName)", for: .normal)
         } else {
             specialtyButton.setTitle("Escolher Especialidade", for: .normal)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSymptom" {
-            (segue.destination as? SymptomViewController)?.allowsSelection = true
-        } else if segue.identifier == "showSpecialty" {
-            (segue.destination as? SpecialtyViewController)?.allowsSelection = true
         }
     }
     
@@ -78,13 +74,13 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM-DD"
             let dateFromString = dateFormatter.date(from: dateString)
-
             
             guard let date = dateFromString else {
                 fatalError("ERROR: Date conversion failed due to mismatched format.")
             }
             
-            dataSource.getAppointmentRequest(appointment: Appointment(date: birthday, patient: Patient(name: nameText.text!, gender: genderText.text!, dateOfBirth: date, phone: phoneText.text!), address: Adress(street: streetText.text!, number: Int(numberText.text!)!, complement: complement.text!, neighborhood: neighborhoodText.text!, cep: cepText.text!, city: cityText.text!, state: stateText.text!), symptoms: arrayInt, specialty: Specialty(id: (selectedSpecialty?.id)!, name: "Pediatra")), completion: { success in
+            // MARK: -Post Request 
+            dataSource.postAppointmentRequest(appointment: Appointment(date: birthday, patient: Patient(name: nameText.text!, gender: genderText.text!, dateOfBirth: date, phone: phoneText.text!), address: Adress(street: streetText.text!, number: Int(numberText.text!)!, complement: complement.text!, neighborhood: neighborhoodText.text!, cep: cepText.text!, city: cityText.text!, state: stateText.text!), symptoms: arrayInt, specialty: Specialty(id: (selectedSpecialty?.id)!, name: "Pediatra")), completion: { success in
                 
                 let alert = UIAlertController(title: "Solicitação Concluída", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
@@ -95,5 +91,25 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
             })
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSymptom" {
+            (segue.destination as? SymptomViewController)?.allowsSelection = true
+        } else if segue.identifier == "showSpecialty" {
+            (segue.destination as? SpecialtyViewController)?.allowsSelection = true
+        }
+    }
 }
 
+// MARK: -Hide keyboard
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+}

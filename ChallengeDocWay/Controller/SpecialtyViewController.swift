@@ -15,6 +15,7 @@ class SpecialtyViewController: UIViewController {
     var allowsSelection = false
     
     private let dataSource = DataSource()
+    
     let spinner = UIActivityIndicatorView(style: .whiteLarge)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,7 +27,7 @@ class SpecialtyViewController: UIViewController {
         
         tableView.register(UINib(nibName: "SpecialtyTableViewCell", bundle: .main), forCellReuseIdentifier: "SpecialtyTableViewCell")
         
-         tableView.allowsSelection = allowsSelection 
+        tableView.allowsSelection = allowsSelection
         
         // Get the request
         dataSource.getSpecialityRequest(completion: { success in
@@ -34,7 +35,6 @@ class SpecialtyViewController: UIViewController {
             self.tableView.reloadData()
         })
     }
-    
     
     func createSpinnerView() {
         spinner.color = .black
@@ -46,6 +46,8 @@ class SpecialtyViewController: UIViewController {
         spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }
+
+// MARK: -Table View Delegate
 
 extension SpecialtyViewController: UITableViewDelegate, UITableViewDataSource {
     

@@ -16,5 +16,4 @@ class Symptom: NSObject, Codable {
         self.id = id
         self.name = name
     }
-    
 }

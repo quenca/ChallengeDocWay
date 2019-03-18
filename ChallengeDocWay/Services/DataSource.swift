@@ -130,8 +130,10 @@ class DataSource {
         dataTask?.resume()
     }
     
+    // MARK: -POST Resquest
+    
     // We'll need a completion block that returns an error if we run into any problems
-    func getAppointmentRequest(appointment: Appointment, completion:((Error?) -> Void)?) {
+    func postAppointmentRequest(appointment: Appointment, completion:((Error?) -> Void)?) {
        let url = postAppointmentURL()
         
         // Specify this request as being a POST method

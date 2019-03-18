@@ -13,7 +13,7 @@ class SymptomViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var allowsSelection = false
-
+    
     var symptoms = [Symptom]()
     
     private let dataSource = DataSource()
@@ -66,6 +66,8 @@ class SymptomViewController: UIViewController {
     }
 }
 
+// MARK: -Table View Delegate
+
 extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,7 +89,7 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
             createSpinnerView()
             spinner.startAnimating()
             return UITableViewCell()
-        
+            
         case .noResults:
             self.spinner.stopAnimating()
             let alert = UIAlertController(title: "Error", message: "Not Found", preferredStyle: .alert)

@@ -30,32 +30,8 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     
     private let dataSource = DataSource()
     
-    var isKeyboardAppear = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if !isKeyboardAppear {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y == 0{
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
-            }
-            isKeyboardAppear = true
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if isKeyboardAppear {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                if self.view.frame.origin.y != 0{
-                    self.view.frame.origin.y += keyboardSize.height
-                }
-            }
-            isKeyboardAppear = false
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

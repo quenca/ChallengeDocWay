@@ -26,6 +26,7 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var complement: UITextField!
     
     @IBOutlet weak var symptomButton: UIButton!
+    @IBOutlet weak var specialtyButton: UIButton!
     
     private let dataSource = DataSource()
     
@@ -35,9 +36,14 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         if selectedSymptoms.isEmpty {
-                    symptomButton.setTitle("Escolher Sintomas", for: .normal)
+            symptomButton.setTitle("Escolher Sintomas", for: .normal)
         } else {
-        symptomButton.setTitle("\(selectedSymptoms.count) Sintomas Selecionados", for: .normal)
+            symptomButton.setTitle("\(selectedSymptoms.count) Sintomas Selecionados", for: .normal)
+        }
+        if let specialtyName = selectedSpecialty?.name {
+            specialtyButton.setTitle("\(specialtyName)", for: .normal)
+        } else {
+            specialtyButton.setTitle("Escolher Especialidade", for: .normal)
         }
     }
     
@@ -50,37 +56,35 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addAppointment(_ sender: Any) {
-     /*   if nameText.text!.isEmpty && birthdayText.text!.isEmpty &&  genderText.text!.isEmpty &&  phoneText.text!.isEmpty &&  streetText.text!.isEmpty &&  neighborhoodText.text!.isEmpty &&  stateText.text!.isEmpty &&  cepText.text!.isEmpty &&  dateText.text!.isEmpty &&  timeText.text!.isEmpty &&  cityText.text!.isEmpty &&  complement.text!.isEmpty {
+        if nameText.text!.isEmpty && birthdayText.text!.isEmpty &&  genderText.text!.isEmpty &&  phoneText.text!.isEmpty &&  streetText.text!.isEmpty &&  neighborhoodText.text!.isEmpty &&  stateText.text!.isEmpty &&  cepText.text!.isEmpty &&  dateText.text!.isEmpty &&  timeText.text!.isEmpty &&  cityText.text!.isEmpty &&  complement.text!.isEmpty {
             let alert = UIAlertController(title: "Campos Vazios", message: "Preencha todos os campos", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else {
             
-        }*/
-        let birthdayString = birthdayText.text!
-        let birthdayFormatter = DateFormatter()
-        birthdayFormatter.dateFormat = "YYYY-MM-DD"
-        let birthdayFromString = birthdayFormatter.date(from: birthdayString)
-        
-        let dateString = birthdayText.text!
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DDTHH:MM:SSZ"
-        let dateFromString = dateFormatter.date(from: dateString)
-        
-    /*    dataSource.getAppointmentRequest(appointment: Appointment(date: dateFromString!, patient: Patient(name: nameText.text!, gender: genderText.text!, dateOfBirth: birthdayFromString!, phone: phoneText.text!), address: Adress(street: streetText.text!, number: Int(numberText.text!)!, complement: complement.text!, neighborhood: neighborhoodText.text!, cep: cepText.text!, city: cityText.text!, state: stateText.text!), symptoms: [3], specialty: SpecialtyID(id: 1)), completion: {success in
-            print("Sucess")
-        })
-*/
-    /*    dataSource.getAppointmentRequest(appointment: Appointment(date: dateFromString!, patient: Patient(name: "Gustavo", gender: "Masculino", dateOfBirth: dateFromString!, phone: "3332332"), address: Adress(street: "Rua", number: 22, complement: "2d", neighborhood: "Bairro", cep: "3322332", city: "Ourinhos", state: "SP"), symptoms: [3], specialty: SpecialtyID(id: 1)), completion: {success in
-            let alert = UIAlertController(title: "Solicitação Concluída", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                (action: UIAlertAction!) -> Void in
-                self.navigationController?.popViewController(animated: true);
-            }))
-            self.present(alert, animated: true, completion: nil)
+            let birthdayString = birthdayText.text!
+            let birthdayFormatter = DateFormatter()
+            birthdayFormatter.dateFormat = "YYYY-MM-DD"
+            let birthdayFromString = birthdayFormatter.date(from: birthdayString)
             
-      })
-         }*/ }
+            let dateString = birthdayText.text!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-DDTHH:MM:SSZ"
+            let dateFromString = dateFormatter.date(from: dateString)
+            
+            let arrayInt = selectedSymptoms.compactMap({ $0.id })
+            
+            
+            dataSource.getAppointmentRequest(appointment: Appointment(date: dateFromString!, patient: Patient(name: nameText.text!, gender: genderText.text!, dateOfBirth: birthdayFromString!, phone: phoneText.text!), address: Adress(street: streetText.text!, number: Int(numberText.text!)!, complement: complement.text!, neighborhood: neighborhoodText.text!, cep: cepText.text!, city: cityText.text!, state: stateText.text!), symptoms: arrayInt, specialty: Specialty(id: (selectedSpecialty?.id)!, name: "Pediatra")), completion: {success in
+                let alert = UIAlertController(title: "Solicitação Concluída", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
+                    (action: UIAlertAction!) -> Void in
+                    self.navigationController?.popViewController(animated: true);
+                }))
+                self.present(alert, animated: true, completion: nil)
+            })
+        }
+    }
 }
 

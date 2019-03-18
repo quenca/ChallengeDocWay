@@ -128,7 +128,6 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
         guard allowsSelection else {
             return
         }
-        
         if let cell = tableView.cellForRow(at: indexPath) {
             if case .results(let list) = dataSource.symptomState {
                 let selected = selectedSymptoms

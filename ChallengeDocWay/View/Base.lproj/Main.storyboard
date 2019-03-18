@@ -469,6 +469,7 @@
                         <outlet property="neighborhoodText" destination="mZg-WE-54R" id="d5X-7L-ErZ"/>
                         <outlet property="numberText" destination="joy-bi-51C" id="YIv-Wx-8Bh"/>
                         <outlet property="phoneText" destination="axu-NX-lAM" id="cee-UP-S6R"/>
+                        <outlet property="specialtyButton" destination="JOL-IA-1qJ" id="Us2-n8-w3S"/>
                         <outlet property="stateText" destination="lfA-7Y-cip" id="BA5-kX-D6f"/>
                         <outlet property="streetText" destination="qOu-71-M1n" id="fAa-Y5-PzB"/>
                         <outlet property="symptomButton" destination="PET-1I-cJk" id="fgI-Rd-Bbq"/>

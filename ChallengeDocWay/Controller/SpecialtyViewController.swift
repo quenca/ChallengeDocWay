@@ -17,13 +17,16 @@ class SpecialtyViewController: UIViewController {
     private let dataSource = DataSource()
     let spinner = UIActivityIndicatorView(style: .whiteLarge)
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "SpecialtyTableViewCell", bundle: .main), forCellReuseIdentifier: "SpecialtyTableViewCell")
         
-         tableView.allowsSelection = allowsSelection
-         tableView.allowsMultipleSelection = allowsSelection
+         tableView.allowsSelection = allowsSelection 
         
         // Get the request
         dataSource.getSpecialityRequest(completion: { success in
@@ -89,5 +92,14 @@ extension SpecialtyViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard allowsSelection else {
+            return
+        }
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if case .results(let list) = dataSource.specialtyState {
+                selectedSpecialty = list[indexPath.row]
+            }
+        }
+    }
 }

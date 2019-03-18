@@ -56,27 +56,36 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addAppointment(_ sender: Any) {
-        if nameText.text!.isEmpty && birthdayText.text!.isEmpty &&  genderText.text!.isEmpty &&  phoneText.text!.isEmpty &&  streetText.text!.isEmpty &&  neighborhoodText.text!.isEmpty &&  stateText.text!.isEmpty &&  cepText.text!.isEmpty &&  dateText.text!.isEmpty &&  timeText.text!.isEmpty &&  cityText.text!.isEmpty &&  complement.text!.isEmpty {
+        if nameText.text!.isEmpty || birthdayText.text!.isEmpty ||  genderText.text!.isEmpty ||  phoneText.text!.isEmpty ||  streetText.text!.isEmpty ||  neighborhoodText.text!.isEmpty ||  stateText.text!.isEmpty ||  cepText.text!.isEmpty ||  dateText.text!.isEmpty ||  timeText.text!.isEmpty ||  cityText.text!.isEmpty ||  complement.text!.isEmpty || selectedSymptoms.isEmpty || selectedSpecialty == nil {
             let alert = UIAlertController(title: "Campos Vazios", message: "Preencha todos os campos", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else {
             
+            let arrayInt = selectedSymptoms.compactMap({ $0.id })
+            
             let birthdayString = birthdayText.text!
             let birthdayFormatter = DateFormatter()
             birthdayFormatter.dateFormat = "YYYY-MM-DD"
             let birthdayFromString = birthdayFormatter.date(from: birthdayString)
             
-            let dateString = birthdayText.text!
+            guard let birthday = birthdayFromString else {
+                fatalError("ERROR: Date conversion failed due to mismatched format.")
+            }
+            
+            let dateString = dateText.text!
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "YYYY-MM-DDTHH:MM:SSZ"
+            dateFormatter.dateFormat = "YYYY-MM-DD"
             let dateFromString = dateFormatter.date(from: dateString)
+
             
-            let arrayInt = selectedSymptoms.compactMap({ $0.id })
+            guard let date = dateFromString else {
+                fatalError("ERROR: Date conversion failed due to mismatched format.")
+            }
             
-            
-            dataSource.getAppointmentRequest(appointment: Appointment(date: dateFromString!, patient: Patient(name: nameText.text!, gender: genderText.text!, dateOfBirth: birthdayFromString!, phone: phoneText.text!), address: Adress(street: streetText.text!, number: Int(numberText.text!)!, complement: complement.text!, neighborhood: neighborhoodText.text!, cep: cepText.text!, city: cityText.text!, state: stateText.text!), symptoms: arrayInt, specialty: Specialty(id: (selectedSpecialty?.id)!, name: "Pediatra")), completion: {success in
+            dataSource.getAppointmentRequest(appointment: Appointment(date: birthday, patient: Patient(name: nameText.text!, gender: genderText.text!, dateOfBirth: date, phone: phoneText.text!), address: Adress(street: streetText.text!, number: Int(numberText.text!)!, complement: complement.text!, neighborhood: neighborhoodText.text!, cep: cepText.text!, city: cityText.text!, state: stateText.text!), symptoms: arrayInt, specialty: Specialty(id: (selectedSpecialty?.id)!, name: "Pediatra")), completion: { success in
+                
                 let alert = UIAlertController(title: "Solicitação Concluída", message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action: UIAlertAction!) -> Void in

@@ -53,7 +53,6 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
         case .results(let list):
             return list.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +81,17 @@ extension SymptomViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(for: symptom)
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if case .results(let list) = dataSource.symptomState {
+                let selectedSymptom = list[indexPath.row]
+                let symptomAppointment = AppointmentViewController()
+                symptomAppointment.selectedSymptom = [selectedSymptom.id]
+                self.navigationController?.popViewController(animated: true);
+            }
         }
     }
 }

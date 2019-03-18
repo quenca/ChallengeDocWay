@@ -38,8 +38,14 @@ class DataSource {
         return url!
     }
     
-    func getSpecialties() -> URL {
+    func getSpecialtiesaURL() -> URL {
         let urlString = "https://www.mocky.io/v2/5c8c1e0336000044488f842b"
+        let url = URL(string: urlString)
+        return url!
+    }
+    
+    func postAppointmentURL() -> URL {
+        let urlString = "https://requestbin.fullcontact.com/1hvuwq01"
         let url = URL(string: urlString)
         return url!
     }
@@ -98,7 +104,7 @@ class DataSource {
     
     func getSpecialityRequest(completion: @escaping Completion) {
         var dataTask: URLSessionDataTask? = nil
-        let url = getSymptomsURL()
+        let url = getSpecialtiesaURL()
         let session = URLSession.shared
         
         specialtyState = .loading
@@ -123,4 +129,92 @@ class DataSource {
         })
         dataTask?.resume()
     }
+    
+   /* func getAppointmentRequest(appointment: Appointment) {
+        //declare parameter as a dictionary which contains string as key and value combination. considering inputs are valid
+        
+        //create the url with URL
+        let url = getAppontment()
+        let session = URLSession.shared
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        do {
+            
+            request.httpBody = try JSONSerialization.data(withJSONObject: appointment, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        //create dataTask using the session object to send data to the server
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+            
+            guard error == nil else {
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+                    // handle json...
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        })
+        task.resume()
+    }*/
+    
+    // We'll need a completion block that returns an error if we run into any problems
+    func getAppointmentRequest(appointment: Appointment, completion:((Error?) -> Void)?) {
+       let url = postAppointmentURL()
+        
+        // Specify this request as being a POST method
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        // Make sure that we include headers specifying that our request's HTTP body
+        // will be JSON encoded
+        var headers = request.allHTTPHeaderFields ?? [:]
+        headers["Content-Type"] = "application/json"
+        request.allHTTPHeaderFields = headers
+        
+        // Now let's encode out Post struct into JSON data...
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(appointment)
+            // ... and set our request's HTTP body
+            request.httpBody = jsonData
+            print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+        } catch {
+            completion?(error)
+        }
+        
+        // Create and run a URLSession data task with our JSON encoded POST request
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            guard responseError == nil else {
+                completion?(responseError!)
+                return
+            }
+            
+            // APIs usually respond with the data you just sent in your POST request
+            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
+                print("response: ", utf8Representation)
+            } else {
+                print("no readable data received in response")
+            }
+        }
+        task.resume()
+    }
 }
+

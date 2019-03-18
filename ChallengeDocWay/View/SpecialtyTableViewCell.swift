@@ -26,5 +26,4 @@ class SpecialtyTableViewCell: UITableViewCell {
     func configure(for result: Specialty) {
         specialtyLabel.text = result.name
     }
-    
 }

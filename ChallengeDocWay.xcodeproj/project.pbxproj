@@ -17,6 +17,9 @@
 		CD8B00F8223C7B9A00411B43 /* SymptomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B00F7223C7B9A00411B43 /* SymptomViewController.swift */; };
 		CD8B00FB223C88F300411B43 /* SymptomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B00F9223C88F300411B43 /* SymptomCellTableViewCell.swift */; };
 		CD8B00FC223C88F300411B43 /* SymptomCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD8B00FA223C88F300411B43 /* SymptomCellTableViewCell.xib */; };
+		CDBC4254223D82F400DFA02C /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC4253223D82F400DFA02C /* Patient.swift */; };
+		CDBC4256223D940F00DFA02C /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC4255223D940F00DFA02C /* Appointment.swift */; };
+		CDBC4258223D969C00DFA02C /* AppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC4257223D969C00DFA02C /* AppointmentViewController.swift */; };
 		CDE5B525223D7A16002CF6B1 /* SpecialtyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE5B523223D7A16002CF6B1 /* SpecialtyTableViewCell.swift */; };
 		CDE5B526223D7A16002CF6B1 /* SpecialtyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDE5B524223D7A16002CF6B1 /* SpecialtyTableViewCell.xib */; };
 		CDE8B6B8223D6E0100EFEFC5 /* SpecialtyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE8B6B7223D6E0100EFEFC5 /* SpecialtyViewController.swift */; };
@@ -36,6 +39,9 @@
 		CD8B00F7223C7B9A00411B43 /* SymptomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomViewController.swift; sourceTree = "<group>"; };
 		CD8B00F9223C88F300411B43 /* SymptomCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomCellTableViewCell.swift; sourceTree = "<group>"; };
 		CD8B00FA223C88F300411B43 /* SymptomCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SymptomCellTableViewCell.xib; sourceTree = "<group>"; };
+		CDBC4253223D82F400DFA02C /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
+		CDBC4255223D940F00DFA02C /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		CDBC4257223D969C00DFA02C /* AppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewController.swift; sourceTree = "<group>"; };
 		CDE5B523223D7A16002CF6B1 /* SpecialtyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyTableViewCell.swift; sourceTree = "<group>"; };
 		CDE5B524223D7A16002CF6B1 /* SpecialtyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialtyTableViewCell.xib; sourceTree = "<group>"; };
 		CDE8B6B7223D6E0100EFEFC5 /* SpecialtyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +95,8 @@
 			children = (
 				CD8B00F2223C631E00411B43 /* Symptoms.swift */,
 				CDE8B6B9223D6E4000EFEFC5 /* Specialty.swift */,
+				CDBC4253223D82F400DFA02C /* Patient.swift */,
+				CDBC4255223D940F00DFA02C /* Appointment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +107,7 @@
 				CD8B00DF223C559800411B43 /* MenuViewController.swift */,
 				CD8B00F7223C7B9A00411B43 /* SymptomViewController.swift */,
 				CDE8B6B7223D6E0100EFEFC5 /* SpecialtyViewController.swift */,
+				CDBC4257223D969C00DFA02C /* AppointmentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,8 +205,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDBC4258223D969C00DFA02C /* AppointmentViewController.swift in Sources */,
 				CDE5B525223D7A16002CF6B1 /* SpecialtyTableViewCell.swift in Sources */,
 				CDE8B6BA223D6E4000EFEFC5 /* Specialty.swift in Sources */,
+				CDBC4256223D940F00DFA02C /* Appointment.swift in Sources */,
 				CD8B00F3223C631E00411B43 /* Symptoms.swift in Sources */,
 				CD8B00E0223C559800411B43 /* MenuViewController.swift in Sources */,
 				CD8B00F6223C63CC00411B43 /* DataSource.swift in Sources */,
@@ -205,6 +216,7 @@
 				CD8B00DE223C559700411B43 /* AppDelegate.swift in Sources */,
 				CDE8B6B8223D6E0100EFEFC5 /* SpecialtyViewController.swift in Sources */,
 				CD8B00FB223C88F300411B43 /* SymptomCellTableViewCell.swift in Sources */,
+				CDBC4254223D82F400DFA02C /* Patient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

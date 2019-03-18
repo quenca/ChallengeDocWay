@@ -8,8 +8,13 @@
 
 import Foundation
 
-class Symptom: Codable {
+class Symptom: NSObject, Codable {
     let id: Int
     let name: String
+    
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+    }
+    
 }
-

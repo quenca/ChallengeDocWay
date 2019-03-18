@@ -83,4 +83,6 @@ extension SpecialtyViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    
+    
 }

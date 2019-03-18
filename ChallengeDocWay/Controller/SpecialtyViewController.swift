@@ -12,6 +12,7 @@ class SpecialtyViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var allowsSelection = false
     
     private let dataSource = DataSource()
     let spinner = UIActivityIndicatorView(style: .whiteLarge)
@@ -21,12 +22,16 @@ class SpecialtyViewController: UIViewController {
         
         tableView.register(UINib(nibName: "SpecialtyTableViewCell", bundle: .main), forCellReuseIdentifier: "SpecialtyTableViewCell")
         
+         tableView.allowsSelection = allowsSelection
+         tableView.allowsMultipleSelection = allowsSelection
+        
         // Get the request
         dataSource.getSpecialityRequest(completion: { success in
             self.spinner.stopAnimating()
             self.tableView.reloadData()
         })
     }
+    
     
     func createSpinnerView() {
         spinner.color = .black

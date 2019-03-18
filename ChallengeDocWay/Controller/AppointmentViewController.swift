@@ -27,12 +27,26 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var symptomButton: UIButton!
     
-    var selectedSymptom: [Int]?
-    
     private let dataSource = DataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if selectedSymptoms.isEmpty {
+                    symptomButton.setTitle("Escolher Sintomas", for: .normal)
+        } else {
+        symptomButton.setTitle("\(selectedSymptoms.count) Sintomas Selecionados", for: .normal)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSymptom" {
+            (segue.destination as? SymptomViewController)?.allowsSelection = true
+        } else if segue.identifier == "showSpecialty" {
+            (segue.destination as? SpecialtyViewController)?.allowsSelection = true
+        }
     }
     
     @IBAction func addAppointment(_ sender: Any) {
@@ -58,7 +72,6 @@ class AppointmentViewController: UIViewController, UITextFieldDelegate {
             print("Sucess")
         })
 */
-        print(selectedSymptom![0])
     /*    dataSource.getAppointmentRequest(appointment: Appointment(date: dateFromString!, patient: Patient(name: "Gustavo", gender: "Masculino", dateOfBirth: dateFromString!, phone: "3332332"), address: Adress(street: "Rua", number: 22, complement: "2d", neighborhood: "Bairro", cep: "3322332", city: "Ourinhos", state: "SP"), symptoms: [3], specialty: SpecialtyID(id: 1)), completion: {success in
             let alert = UIAlertController(title: "Solicitação Concluída", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {

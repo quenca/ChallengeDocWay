@@ -148,7 +148,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="850"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVD-gP-pco">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="JVD-gP-pco">
                                 <rect key="frame" x="0.0" y="111" width="320" height="739"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyg-oM-R8i">
@@ -221,6 +221,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="YYYY-MM-DD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZyF-XK-ND8">
                                                 <rect key="frame" x="10" y="646" width="166" height="30"/>
                                                 <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereço:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osP-mY-pmE">
@@ -468,6 +469,7 @@
                         <outlet property="neighborhoodText" destination="mZg-WE-54R" id="d5X-7L-ErZ"/>
                         <outlet property="numberText" destination="joy-bi-51C" id="YIv-Wx-8Bh"/>
                         <outlet property="phoneText" destination="axu-NX-lAM" id="cee-UP-S6R"/>
+                        <outlet property="scrollView" destination="JVD-gP-pco" id="MPI-qv-lhh"/>
                         <outlet property="specialtyButton" destination="JOL-IA-1qJ" id="Us2-n8-w3S"/>
                         <outlet property="stateText" destination="lfA-7Y-cip" id="BA5-kX-D6f"/>
                         <outlet property="streetText" destination="qOu-71-M1n" id="fAa-Y5-PzB"/>
